@@ -1,0 +1,101 @@
+
+class Main extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            resources: [],
+            data: []
+        }
+    }
+
+    componentDidMount() {
+        var self = this;
+        $.getJSON("data.json", function(data) {
+            self.setState(data);
+        });
+    }
+
+    componentDidUpdate() {
+        document.querySelectorAll("pre").forEach(block => {
+            hljs.highlightBlock(block);
+        });
+    }
+
+    
+    render() {
+        
+        return this.state.resources.map(function (item) {
+
+            if (item._type == "request") {
+                return <div class="container-fluid">
+
+                <h3 class="page-title" id={"mainCon"+item._id} >{item.name}</h3>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class={"method method-"+item.method.toString().toLowerCase()}>
+                                    <span class={"label l-"+item.method.toString().toLowerCase()}>{item.method}</span>
+                                    &nbsp;&nbsp; {item.url}
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <h3 class="panel-title" ><strong>Headers</strong></h3>
+                                <table class="table table-hover">
+                                    <tbody>
+                                        {item.headers.map(function(header){
+                                            if(header.name !== ""){
+                                                return <tr>
+                                                            <td>{header.name}</td>
+                                                            <td><code><a href="#env">{header.value}</a></code></td>
+                                                            <td>{header.description}</td>
+                                                        </tr>
+                                            }
+                                        })}
+                                    </tbody>
+                                </table>
+                                
+                                { item.parameters.length ? 
+                                    <div>
+                                        <h3 class="panel-title"><strong>Parameters</strong></h3>
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                {item.parameters.map(function(header){
+                                                    if(header.name !== ""){
+                                                        return <tr>
+                                                                    <td>{header.name}</td>
+                                                                    <td><code>{header.value}</code></td>
+                                                                    <td>{header.description}</td>
+                                                                </tr>
+                                                    }
+                                                })}
+                                                </tbody>
+                                        </table>
+                                    </div>
+                                    :""
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <h3 class="panel-title">Request Body</h3>
+                        <pre class="language-json hljs">
+                            {(item.body.text && item.body.text != "") ? item.body.text: "No Request"}
+                        </pre>
+
+                        <h3 class="panel-title">Response</h3>
+                        <pre class="language-json hljs">
+                            {(item.description != "") ? item.description: "No Responses"}
+                        </pre>
+                    </div>
+                </div>
+                <div class="divider"></div>
+            </div>
+            }
+        })
+    }
+}
+
+ReactDOM.render(<Main/>, document.getElementById("mainContent"));
