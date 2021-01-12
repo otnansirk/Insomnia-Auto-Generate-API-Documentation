@@ -16,5 +16,3 @@ Always copy/paste the last response to description before export workspace.<br>
 2. Replace `data.json` in the root folder with the file downloaded earlier. 
     Don't rename the file, keep the name `data.json`.
 
-## Author
-Me
