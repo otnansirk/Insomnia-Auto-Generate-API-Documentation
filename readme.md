@@ -6,6 +6,9 @@
 ## Support
 Only support for one workspace from the Insomnia file export
 
+## Insomnia support export format
+So far I've only tested from insomnia export JSON format (V4). And going well.
+
 ## Insomnia
 Always copy/paste the last response to description before export workspace.<br>
 `Click Docs -> Add Description -> Paste Respose to Column Write a Description -> Close.`
