@@ -20,8 +20,8 @@ class Main extends React.Component {
         document.querySelectorAll("pre").forEach(block => {
             hljs.highlightBlock(block);
         });
-        const id = window.location.href.split('#');
-		if (id.length > 1 ) {
+        const ids = window.location.href.split('#');
+		if (ids.length > 1 ) {
             if ($("#"+ids.pop()).length) {
                 $('html, body').animate({
                     scrollTop: $("#"+ids.pop()).offset().top
