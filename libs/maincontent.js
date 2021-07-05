@@ -20,11 +20,13 @@ class Main extends React.Component {
         document.querySelectorAll("pre").forEach(block => {
             hljs.highlightBlock(block);
         });
-        const id = window.location.href.split('#').pop();
-		if ($("#"+id).length) {
-            $('html, body').animate({
-                scrollTop: $("#"+id).offset().top
-            }, 500);
+        const id = window.location.href.split('#');
+		if (id.length > 1 ) {
+            if ($("#"+ids.pop()).length) {
+                $('html, body').animate({
+                    scrollTop: $("#"+ids.pop()).offset().top
+                }, 500);
+            }
         }
     }
 
