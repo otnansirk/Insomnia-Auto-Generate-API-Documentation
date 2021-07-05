@@ -20,17 +20,22 @@ class Main extends React.Component {
         document.querySelectorAll("pre").forEach(block => {
             hljs.highlightBlock(block);
         });
+        const id = window.location.href.split('#').pop();
+		if ($("#"+id).length) {
+            $('html, body').animate({
+                scrollTop: $("#"+id).offset().top
+            }, 500);
+        }
     }
 
     
     render() {
         
         return this.state.resources.map(function (item) {
-
+            const hightlight = ("mainCon"+item._id == window.location.href.split('#').pop())? "active": "";
             if (item._type == "request") {
                 return <div class="container-fluid">
-
-                <h3 class="page-title" id={"mainCon"+item._id} >{item.name}</h3>
+                <a  href={"#mainCon"+item._id} class={"page-title "+ hightlight} id={"mainCon"+item._id} >{item.name}</a>
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
 
@@ -85,9 +90,9 @@ class Main extends React.Component {
                             {(item.body.text && item.body.text != "") ? item.body.text: "No Request"}
                         </pre>
 
-                        <h3 class="panel-title">Response</h3>
+                        <h3 class="panel-title">Documentation</h3>
                         <pre class="language-json hljs">
-                            {(item.description != "") ? item.description: "No Responses"}
+                            {(item.description != "") ? item.description: "No Docs"}
                         </pre>
                     </div>
                 </div>

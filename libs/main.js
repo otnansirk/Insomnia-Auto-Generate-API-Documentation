@@ -30,7 +30,6 @@ class Main extends React.Component {
         let desc = this.state.description;
         
         return this.state.resources.map(function (item) {
-            console.log(item.dataPropertyOrder)
             if (item._type == "environment") {
                 return <div class="container-fluid">
                             <div class="row">

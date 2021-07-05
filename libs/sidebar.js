@@ -38,10 +38,10 @@ class Sidebar extends React.Component {
                                     {requestData.map(function(obj, i){
                                         if (obj.parentId == item._id && obj.method) {
                                             return <li>
-                                            <a href={"#mainCon"+obj._id} class="">
-                                                <span class={"m m-"+obj.method.toString().toLowerCase()}>{obj.method}</span>
-                                                {obj.name} &nbsp; </a>
-                                        </li>
+                                                <a href={"#mainCon"+obj._id} class="">
+                                                    <span class={"m m-"+obj.method.toString().toLowerCase()}>{obj.method}</span>
+                                                    {obj.name} &nbsp; </a>
+                                            </li>
                                         }
                                     })}
 								</ul>
