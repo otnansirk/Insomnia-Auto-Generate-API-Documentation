@@ -22,11 +22,9 @@ class Main extends React.Component {
         });
         const ids = window.location.href.split('#');
 		if (ids.length > 1 ) {
-            if ($("#"+ids.pop()).length) {
-                $('html, body').animate({
-                    scrollTop: $("#"+ids.pop()).offset().top
-                }, 500);
-            }
+            $('html, body').animate({
+                scrollTop: $("#"+ids.pop()).offset().top
+            }, 500);
         }
     }
 
