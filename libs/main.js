@@ -29,35 +29,50 @@ class Main extends React.Component {
         let name = this.state.name;
         let desc = this.state.description;
         
-        return this.state.resources.map(function (item) {
-            if (item._type == "environment") {
-                return <div class="container-fluid">
-                            <div class="row">
-                                <div class=" col-md-12">
-                                    <div class="panel">
-                                        <div class="panel-body">
-                                            <h3 class="page-title" id="dashboard" >{name}</h3>
-                                            <p style={{ marginBottom:'25px'}}>{desc}</p>
-                                            <h3 class="page-title" id="env" >Environment - {item.name}</h3>
-                                            <table class="table table-hover">
-                                                <tbody>
-                                                    {item.dataPropertyOrder['&'].map(function(env){
-                                                        return <tr>
-                                                                    <td><b>{"{{_."+env+"}}"}</b></td>
-                                                                    <td style={{ width:'100%'}}>{
-                                                                        item.data[env]
-                                                                    }</td>
-                                                                </tr>
-                                                    })}
-                                                </tbody>
-                                            </table>
+        return (
+            <div>
+            <div class="container-fluid">
+                <div class=" col-md-12">
+                    <h3 class="page-title" id="dashboard" >{name}</h3>
+                    <p style={{ marginBottom:'25px'}}>{desc}</p>
+                </div>
+            </div>
+            {
+                this.state.resources.map(function (item) {
+                    if (item._type == "environment") {
+                        var checkProperies = !(item.dataPropertyOrder && Object.keys(item.dataPropertyOrder).length === 0);
+                        
+                        return <div class="container-fluid">
+                                    <div class="row">
+                                        <div class=" col-md-12">
+                                            <div class="panel">
+                                                <div class="panel-body">
+                                                    <h3 class="page-title" id={item._id} ><strong>Env</strong> - {item.name}</h3>
+                                                    <table class="table table-hover">
+                                                        <tbody>
+                                                            {checkProperies && 
+                                                            item.dataPropertyOrder['&'].map(function(env){
+                                                                return <tr>
+                                                                            <td><b>{"{{_."+env+"}}"}</b></td>
+                                                                            <td style={{ width:'100%'}}>{
+                                                                                item.data[env]
+                                                                            }</td>
+                                                                        </tr>
+                                                            })
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                    }
+                })
+
             }
-        })
+            </div>
+        );
     }
 }
 
