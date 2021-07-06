@@ -37,12 +37,16 @@ class SidebarEnv extends React.Component {
                     <ul class="nav">
                         {
                             this.state.resources.map((item, index) => {
-                                return <li>
-                                    <a href={"#"+item._id} class="">
-                                        <span>{this.emoji(index)}</span>&nbsp;&nbsp;&nbsp;  
-                                        {this.ucfirst(item.name).replace('environment', '')} &nbsp; 
-                                    </a>
-                                </li>
+                                if (item.dataPropertyOrder != null) {
+                                    if (Object.keys(item.dataPropertyOrder).length != 0) {
+                                        return <li>
+                                            <a href={"#"+item._id} class="">
+                                                <span>{this.emoji(index)}</span>&nbsp;&nbsp;&nbsp;  
+                                                {this.ucfirst(item.name).replace('environment', '')} &nbsp; 
+                                            </a>
+                                        </li>
+                                    }
+                                }
                             })
                         }
                     </ul>
