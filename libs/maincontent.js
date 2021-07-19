@@ -28,12 +28,18 @@ class Main extends React.Component {
         }
     }
 
+    getMarkdown(data) {
+        var rawMarkup = marked(data, {sanitize: true});
+        return { __html: rawMarkup }; 
+    }
+
     
     render() {
         
-        return this.state.resources.map(function (item) {
+        return this.state.resources.map( (item) => {
             const hightlight = ("mainCon"+item._id == window.location.href.split('#').pop())? "active": "";
             if (item._type == "request") {
+                
                 return <div class="container-fluid">
                 <a  href={"#mainCon"+item._id} class={"page-title "+ hightlight} id={"mainCon"+item._id} >{item.name}</a>
                 <div class="row">
@@ -81,6 +87,15 @@ class Main extends React.Component {
                                     </div>
                                     :""
                                 }
+                                { (item.body.params != undefined && item.body.mimeType == 'multipart/form-data') ? 
+                                    <div>
+                                        <h3 class="panel-title"><strong>Request form data</strong></h3>
+                                        <table class="table table-hover">
+                                            <FormData data={item.body.params}/>
+                                        </table>
+                                    </div>
+                                    :""
+                                }
                             </div>
                         </div>
                     </div>
@@ -91,15 +106,35 @@ class Main extends React.Component {
                         </pre>
 
                         <h3 class="panel-title">Documentation</h3>
-                        <pre class="language-json hljs">
-                            {(item.description != "") ? item.description: "No Docs"}
-                        </pre>
+
+                        <div class="panel-documentation">
+                            {(item.description != "") ? 
+                                <div dangerouslySetInnerHTML={this.getMarkdown(item.description)} />: 
+                                "No Docs"
+                            }
+                        </div>
                     </div>
                 </div>
                 <div class="divider"></div>
             </div>
             }
         })
+    }
+}
+
+class FormData extends React.Component{
+    render() {
+        return <tbody> 
+            {this.props.data.map(function(item){
+                return <tr>
+                            <td>{item.name}</td>
+                            <td><code>{item.value}</code></td>
+                            <td><code>{item.type}</code></td>
+                            <td>{item.fileName}</td>
+                            <td>{item.description}</td>
+                        </tr>
+            })}
+        </tbody>
     }
 }
 
