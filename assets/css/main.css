@@ -1865,6 +1865,6 @@ td{
   word-wrap:break-word !important;
 }
 
-#response {
+.panel-documentation h3 {
   font-size: 16px;
 }
