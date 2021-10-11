@@ -4,7 +4,7 @@
 
 
 ## Version
-### 0.0.1
+### 1.0.0
 
 ## Support
 Only support for one workspace from the Insomnia file export
