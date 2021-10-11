@@ -1864,3 +1864,7 @@ td{
   max-width:200px !important;
   word-wrap:break-word !important;
 }
+
+#response {
+  font-size: 16px;
+}
