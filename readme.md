@@ -2,7 +2,7 @@
 
 ![insomnia auto generate document API](https://raw.githubusercontent.com/krisnantobi/Insomnia-Auto-Generate-API-Documentation/master/assets/images/ss1.png)
 
-Click to see [Demo Page](https://krisnantobi.github.io/Insomnia-Auto-Generate-API-Documentation/)
+Click to see [Demo Page](https://otnansirk.github.io/Insomnia-Auto-Generate-API-Documentation/)
 
 
 ## Version
