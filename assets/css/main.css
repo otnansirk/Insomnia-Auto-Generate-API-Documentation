@@ -1865,6 +1865,11 @@ td{
   word-wrap:break-word !important;
 }
 
-.panel-documentation h3 {
+.panel-documentation h1,
+.panel-documentation h2,
+.panel-documentation h3  {
   font-size: 16px !important;
+}
+.panel-title {
+  font-weight: bold;
 }

@@ -29,7 +29,7 @@ class Main extends React.Component {
     }
 
     getMarkdown(data) {
-        var rawMarkup = marked(data, {sanitize: true});
+        var rawMarkup = marked.parse(data);
         return { __html: rawMarkup }; 
     }
 
