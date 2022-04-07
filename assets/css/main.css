@@ -1873,3 +1873,22 @@ td{
 .panel-title {
   font-weight: bold;
 }
+.navbar-menu-right {
+  float: right;
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+  gap: 20px;
+}
+.download-button {
+  border-radius: 20px;
+  background-color: #0d2347;
+  color: #fff !important;
+}
+.download-button:hover {
+  color: #0d2347 !important;
+  background-color: #fff;
+}
+.download-button:active {
+  color: #fff;
+}
